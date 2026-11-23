@@ -13,6 +13,9 @@ PixieReport turns the latest METAR weather report for an airport station into a 
 
 _Source: `spec/cacheSpec.js`._
 
+[test: should store and retrieve a value : https://github.com/jmeowmeow/PixieReport/blob/main/spec/cacheSpec.js#L40 ]
+[test: should return undefined for expired values : https://github.com/jmeowmeow/PixieReport/blob/main/spec/cacheSpec.js#L47 ]
+
 ## S2: Expiring the cache removes only stale entries @v1 [proposed]
 
 - Given: 'hello' is cached now and 'goodnight' is cached at a time more than five minutes later
@@ -23,6 +26,8 @@ _Source: `spec/cacheSpec.js`._
 
 _Source: `spec/cacheSpec.js`._
 
+[test: should remove expired values on expire() : https://github.com/jmeowmeow/PixieReport/blob/main/spec/cacheSpec.js#L55 ]
+
 ## S3: Units default to metric and follow the station or the requested units @v1 [proposed]
 
 - Given: pixie parameters with no units requested
@@ -31,6 +36,8 @@ _Source: `spec/cacheSpec.js`._
 - and: units 'C' always gives metric and units 'F' always gives Fahrenheit, whatever the station
 
 _Source: `spec/imageTextSpec.js`._
+
+[test: should use metric by default : https://github.com/jmeowmeow/PixieReport/blob/main/spec/imageTextSpec.js#L7 ]
 
 ## S4: Decoded METAR reports are parsed into weather parameters @v1 [proposed]
 
@@ -41,6 +48,9 @@ _Source: `spec/imageTextSpec.js`._
 
 _Source: `spec/parserSpec.js`._
 
+[test: should parse the METARs to expected values : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L102 ]
+[test: should parse the sample decoded reports : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L94 ]
+
 ## S5: An empty report falls back to an unknown or requested station code @v1 [proposed]
 
 - Given: an empty METAR text
@@ -49,6 +59,9 @@ _Source: `spec/parserSpec.js`._
 - and: when it is parsed for the requested station 'KYYX', the stationCode is 'KYYX'
 
 _Source: `spec/parserSpec.js`._
+
+[test: should parse an empty string : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L80 ]
+[test: should default empty metar to requested station code : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L87 ]
 
 ## S6: The background follows the sun's position, or shows static when there is no report @v1 [proposed]
 
@@ -115,3 +128,6 @@ _Source: `compose-async.js`, `preloads.js`._
 - and: for empty parameters it reads 'Weatherpixie image for ICAO METAR ????, showing undefined'
 
 _Source: `spec/parserSpec.js`, `compose-async.js`, `spec/resources/layerDefsTest.js`._
+
+[test: should generate alt text for the sample parsed reports : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L171 ]
+[test: should emit some alt for empty input : https://github.com/jmeowmeow/PixieReport/blob/main/spec/parserSpec.js#L163 ]
